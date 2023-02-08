@@ -1,6 +1,6 @@
 {
   "name": "@onekeyfe/react-native-ble-plx",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "React Native Bluetooth Low Energy library",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/OneKeyHQ/react-native-ble-plx.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
