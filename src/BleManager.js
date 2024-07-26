@@ -529,6 +529,23 @@ export class BleManager {
     return new Device(nativeDevice, this)
   }
 
+  async discoverAllServicesAndCharacteristicsForDeviceForceRefresh(
+    deviceIdentifier: DeviceId,
+    transactionId: ?TransactionId
+  ): Promise<Device> {
+    if (!transactionId) {
+      transactionId = this._nextUniqueID()
+    }
+    const nativeDevice = await this._callPromise(
+      BleModule.discoverAllServicesAndCharacteristicsForDeviceForceRefresh(deviceIdentifier, transactionId)
+    )
+    return new Device(nativeDevice, this)
+  }
+
+  async refreshGatt(deviceIdentifier: DeviceId): Promise<Boolean> {
+    return await this._callPromise(BleModule.refreshGatt(deviceIdentifier))
+  }
+
   // Mark: Service and characteristic getters --------------------------------------------------------------------------
 
   /**

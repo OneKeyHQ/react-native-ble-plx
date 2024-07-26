@@ -275,6 +275,21 @@ public class BleClientManager extends ReactContextBaseJavaModule {
                 data -> safePromise.resolve(deviceConverter.toJSObject(data)), error -> safePromise.reject(null, errorConverter.toJs(error)));
     }
 
+    @ReactMethod
+    public void discoverAllServicesAndCharacteristicsForDeviceForceRefresh(String deviceId, final String transactionId,final Promise promise) {
+        final SafePromise safePromise = new SafePromise(promise);
+        bleAdapter.discoverAllServicesAndCharacteristicsForDevice(deviceId, transactionId, true,
+                data -> safePromise.resolve(deviceConverter.toJSObject(data)), error -> safePromise.reject(null, errorConverter.toJs(error)));
+    }
+
+
+    @ReactMethod
+    public void refreshGatt(String deviceId, final Promise promise) {
+        final SafePromise safePromise = new SafePromise(promise);
+        bleAdapter.refreshGatt(deviceId,
+                data -> safePromise.resolve(data), error -> safePromise.reject(null, errorConverter.toJs(error)));
+    }
+
     // Mark: Service and characteristic getters ----------------------------------------------------
 
     @ReactMethod
@@ -634,7 +649,7 @@ public class BleClientManager extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void addListener(String eventName) {
-      // Keep: Required for RN built in Event Emitter Calls.  
+      // Keep: Required for RN built in Event Emitter Calls.
     }
 
     @ReactMethod
